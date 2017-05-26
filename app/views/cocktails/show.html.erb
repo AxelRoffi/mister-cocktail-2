@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><%= @cocktail.name %></h1>
+
+      <h2>How to do it?</h2>
+      <% @cocktail_doses.each do |dose| %>
+        <p>
+          <%= dose.description %> of <%= dose.ingredient.name %>
+        </p>
+      <% end %>
+      <%= link_to 'Back', cocktails_path %>
+    </div>
+  </div>
+
+  <%= simple_form_for @dose,
+        url: doses_create_path,
+        method: :get do |f| %>
+    <%= f.input :description %>
+    <%= f.input :ingredient_id, collection: @ingredients %>
+    <%= f.input :cocktail_id, as: :hidden, input_html: { value: @cocktail.id } %>
+    <%= f.submit %>
+  <% end %>
+</div>

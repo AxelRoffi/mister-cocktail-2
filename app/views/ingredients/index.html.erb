@@ -1,0 +1,19 @@
+<h1>All Our Magical Powders</h1>
+
+<div class="container">
+  <% @ingredients.each do |ingredient| %>
+    <div class="row">
+      <div class="col-xs-4">
+        <%= ingredient.name %>
+      </div>
+      <div class="col-xs-8">
+        <% ingredient.cocktails.each do |cocktail| %>
+          <div>
+            <%= link_to cocktail.name, cocktail_path(cocktail) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
